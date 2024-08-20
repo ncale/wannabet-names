@@ -7,7 +7,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_ALCHEMY_URL: z.string().url(),
-    NEXT_PUBLIC_WC_APP_ID: z.string().optional(),
+    NEXT_PUBLIC_WC_APP_ID: z.string(),
     NEXT_PUBLIC_ENABLE_TESTNETS: z.coerce.boolean(),
   },
   runtimeEnv: {
