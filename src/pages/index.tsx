@@ -6,7 +6,7 @@ import SetSubnameSection from "@/components/sections/set-subname";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className="px-4">
       <Head>
         <title>Wannabet Subnames</title>
         <meta
