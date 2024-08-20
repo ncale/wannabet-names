@@ -8,8 +8,4 @@ export const subnameSchema = z
   .max(18)
   .regex(/^[a-z0-9]+$/, "Only alphanumeric characters are allowed");
 
-export const subnameFormSchema = z.object({
-  name: subnameSchema,
-});
-
-export type SubnameFormType = z.infer<typeof subnameFormSchema>;
+export type SubnameType = z.infer<typeof subnameSchema>;
