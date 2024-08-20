@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Header } from "./_header/header";
+import { SetSubnameForm } from "./_subnames/set-subname-form";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,9 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main></main>
+      <main className="max-w-lg mx-auto pt-24">
+        <SetSubnameForm />
+      </main>
 
       <footer></footer>
     </div>
