@@ -25,7 +25,7 @@ export default async function handler(
         return;
       }
 
-      res.status(200).json({ message: "success", data: namestoneRes });
+      res.status(200).json({ message: "Success", data: namestoneRes });
     } catch (error) {
       if (error instanceof ZodError) {
         res
@@ -35,7 +35,7 @@ export default async function handler(
       if (error instanceof Error) {
         res.status(500).json({ error: error.message });
       }
-      res.status(500).json({ error: "unknown error" });
+      res.status(500).json({ error: "Unknown error" });
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });

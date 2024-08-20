@@ -21,11 +21,17 @@ export default async function handler(
         message: parsed.message,
         signature: parsed.signature,
       });
-      if (!valid) res.status(400).json({ error: "Invalid Signature" });
+      if (!valid) {
+        res.status(400).json({ error: "Invalid Signature" });
+        return;
+      }
 
       // check if username is taken
       const nameTaken = await nameStoneService.isNameTaken(parsed.name);
-      if (nameTaken) res.status(409).json({ error: "Name is taken" });
+      if (nameTaken) {
+        res.status(409).json({ error: "Name is taken" });
+        return;
+      }
 
       // check if user already has a name
       const existingName = await nameStoneService.getName(parsed.address);
@@ -39,7 +45,7 @@ export default async function handler(
         parsed.address
       );
 
-      res.status(200).send({ message: "success", data: namestoneRes });
+      res.status(200).send({ message: "Success", data: namestoneRes });
     } catch (error) {
       if (error instanceof ZodError) {
         res
