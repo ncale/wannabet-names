@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { subnameFormSchema, type SubnameFormType } from "./subname-schema";
 import {
   Form,
@@ -18,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { useAccount } from "wagmi";
 import { abbreviateHex } from "@/lib/utils";
 
-export function SetSubnameForm() {
+export default function SetSubnameForm() {
   // 1. Define your form.
   const form = useForm<SubnameFormType>({
     resolver: zodResolver(subnameFormSchema),

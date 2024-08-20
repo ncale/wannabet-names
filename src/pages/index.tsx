@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Header } from "./_header/header";
-import { SetSubnameForm } from "./_subnames/set-subname-form";
+import Header from "@/components/header/header";
+import SetSubnameForm from "@/components/subnames/set-subname-form";
 
 const Home: NextPage = () => {
   return (
