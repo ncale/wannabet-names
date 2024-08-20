@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useAccount } from "wagmi";
 import { abbreviateHex } from "@/lib/utils";
 import {
   subnameFormSchema,
@@ -22,26 +21,30 @@ import {
 import { signMessage } from "@wagmi/core";
 import { config } from "@/wagmi";
 import { ApiBodyType } from "@/lib/types/subname-api-body";
+import { Address } from "viem";
+import { useQueryClient } from "@tanstack/react-query";
 
-export default function SetSubnameForm() {
+export default function SetSubnameForm({
+  address,
+  defaultValues,
+}: {
+  address?: Address;
+  defaultValues: SubnameFormType;
+}) {
+  const queryClient = useQueryClient();
+
   const form = useForm<SubnameFormType>({
     resolver: zodResolver(subnameFormSchema),
-    defaultValues: {
-      name: "",
-    },
+    defaultValues,
   });
-
-  const { address } = useAccount();
 
   async function onSubmit(values: SubnameFormType) {
     try {
       console.log("submitting...", values);
       if (!address) return;
 
-      const message =
-        "I want to claim the provided subname for wannabet.eth: " + values.name;
+      const message = `I want to claim the provided subname: ${values.name}.wannabet.eth`;
       const signature = await signMessage(config, { message });
-
       const body: ApiBodyType = {
         name: values.name,
         address: address,
@@ -56,13 +59,21 @@ export default function SetSubnameForm() {
         },
         body: JSON.stringify(body),
       });
-      console.log("response", res);
+
       if (!res.ok) {
-        const error = await res.json();
-        console.error("error", error);
-        return;
+        const resJson = await res.json();
+        throw new Error(resJson.error);
       }
+
+      queryClient.invalidateQueries({ queryKey: ["current-subname", address] });
+      form.reset();
+      console.log("success");
     } catch (error) {
+      if (error instanceof Error) {
+        form.setError("name", {
+          message: `An error occurred: ${error.message}`,
+        });
+      }
       console.error("error", error);
     }
   }
@@ -78,7 +89,7 @@ export default function SetSubnameForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subname</FormLabel>
+              <FormLabel>What name do you want to claim? *</FormLabel>
               <FormControl>
                 <Input placeholder="example" {...field} />
               </FormControl>
@@ -86,12 +97,19 @@ export default function SetSubnameForm() {
                 This name will resolve to the following connected address:{" "}
                 {abbreviateHex(address, 4)}
               </FormDescription>
+              <FormDescription>
+                * Note: This action will revoke any existing subname you have
+              </FormDescription>
 
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={form.formState.isSubmitting}>
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="w-full"
+        >
           {form.formState.isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>
