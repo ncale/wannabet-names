@@ -1,4 +1,4 @@
-import { isHex } from "viem";
+import { Hex, isHex } from "viem";
 import { z } from "zod";
 
 export const hexSchema = z
@@ -6,4 +6,5 @@ export const hexSchema = z
   .trim()
   .refine((val) => isHex(val), {
     message: "Invalid hex value",
-  });
+  })
+  .transform((val) => val as Hex);

@@ -1,4 +1,4 @@
-import { isAddress } from "viem";
+import { Address, isAddress } from "viem";
 import { z } from "zod";
 
 export const addressSchema = z
@@ -6,4 +6,5 @@ export const addressSchema = z
   .trim()
   .refine((val) => isAddress(val), {
     message: "Invalid ethereum address",
-  });
+  })
+  .transform((val) => val as Address);
