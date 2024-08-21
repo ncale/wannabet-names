@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Header from "@/components/header/header";
-import ViewSubnameSection from "@/components/sections/view-subname";
-import SetSubnameSection from "@/components/sections/set-subname";
+import LandingSection from "@/components/sections/landing";
 
 const Home: NextPage = () => {
   return (
@@ -18,9 +17,8 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <main className="max-w-lg space-y-12 mx-auto pt-24">
-        <ViewSubnameSection />
-        <SetSubnameSection />
+      <main className="pt-24">
+        <LandingSection />
       </main>
 
       <footer></footer>
