@@ -18,9 +18,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Header />
+          <div className="px-4">
+            <Header />
 
-          <div className="px-4">{children}</div>
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
