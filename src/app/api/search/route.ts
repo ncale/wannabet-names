@@ -5,7 +5,7 @@ import { ZodError } from "zod";
 
 export async function GET(req: NextRequest) {
   try {
-    console.log("received request at /api/search");
+    console.log("Received GET request at /api/search");
 
     // Get "q" search param
     const query = req.nextUrl.searchParams.get("q");
