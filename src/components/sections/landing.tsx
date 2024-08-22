@@ -12,12 +12,7 @@ export default function LandingSection() {
         Yep. Free. Just connect your wallet and claim.
       </p>
       <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-        <Button
-          asChild
-          size="lg"
-          variant="default"
-          className="mt-8 font-bold text-base rounded-xl"
-        >
+        <Button asChild size="lg" variant="default" className="mt-8">
           <Link href="/search">
             Get started
             <svg
