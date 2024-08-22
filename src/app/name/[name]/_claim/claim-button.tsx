@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 
 /**
- * This button assumes schema validation is already performed on the name
+ * This button assumes schema validation has already been
+ * performed on the name.
  */
 
 export default function ClaimButton({
