@@ -8,7 +8,9 @@ export default function UserAvatar({ user }: { user: NameStoneUser }) {
         src={user.text_records.avatar_url}
         alt={`${user.name} user avatar`}
       />
-      <AvatarFallback></AvatarFallback>
+      <AvatarFallback className="text-center text-muted-foreground">
+        Avatars coming soon!
+      </AvatarFallback>
     </Avatar>
   );
 }
