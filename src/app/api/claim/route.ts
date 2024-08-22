@@ -9,11 +9,14 @@ export async function POST(req: NextRequest) {
   try {
     console.log("Received POST request at /api/claim");
 
-    // Get [address] url param
+    // Get body from request
     const body = await req.json();
 
     // Parse - throw if parsing fails
     const parsed = apiClaimBodySchema.parse(body);
+
+    // Verify message is as expected
+    // --- TO BE IMPLEMENTED ---
 
     // Verify signature - return if invalid
     const valid = await verifyMessage({
