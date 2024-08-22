@@ -18,7 +18,7 @@ export default function LandingSection() {
           variant="default"
           className="mt-8 font-bold text-base rounded-xl"
         >
-          <Link href="/dashboard">
+          <Link href="/search">
             Get started
             <svg
               className="ml-2 -mr-1 w-5 h-5"
