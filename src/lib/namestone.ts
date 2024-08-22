@@ -38,9 +38,9 @@ class NameStoneService {
   }
 
   /** General purpose function for sending a POST request to namestone.xyz api */
-  async #postData(
+  async #postData<TBody>(
     path: "set-name" | "claim-name" | "revoke-name" | "set-domain",
-    body: any
+    body: TBody
   ) {
     const res = await fetch(this.#BASE_URL + path, {
       method: "POST",
@@ -56,25 +56,41 @@ class NameStoneService {
   }
 
   /** Posts to the namestone.xyz "Set Name" route */
-  async setName(name: string, address: Address, avatar?: string) {
+  async setName(
+    name: string,
+    address: Address,
+    options?: { avatar_url?: string; bio?: string }
+  ) {
     const body = {
       domain: this.#DOMAIN,
       name,
       address,
-      text_records: avatar ? { avatar } : undefined,
-    };
-    return this.#postData("set-name", body);
+      text_records: {
+        wb_default: "subname",
+        avatar_url: options ? options.avatar_url : undefined,
+        bio: options ? options.bio : undefined,
+      },
+    } satisfies NameStoneUser;
+    return this.#postData<NameStoneUser>("set-name", body);
   }
 
   /** Posts to the namestone.xyz "Claim Name" route */
-  async claimName(name: string, address: Address, avatar?: string) {
+  async claimName(
+    name: string,
+    address: Address,
+    options?: { avatar_url?: string; bio?: string }
+  ) {
     const body = {
       domain: this.#DOMAIN,
       name,
       address,
-      text_records: avatar ? { avatar } : undefined,
-    };
-    return this.#postData("claim-name", body);
+      text_records: {
+        wb_default: "subname",
+        avatar_url: options ? options.avatar_url : undefined,
+        bio: options ? options.bio : undefined,
+      },
+    } satisfies NameStoneUser;
+    return this.#postData<NameStoneUser>("claim-name", body);
   }
 
   /** Gets a list of names */ // ! Looking into pagination
@@ -137,8 +153,8 @@ class NameStoneService {
     const body = {
       domain: this.#DOMAIN,
       name,
-    };
-    return await this.#postData("revoke-name", body);
+    } satisfies Partial<NameStoneUser>;
+    return await this.#postData<Partial<NameStoneUser>>("revoke-name", body);
   }
 }
 
@@ -147,11 +163,23 @@ type NameStoneResponse = NameStoneUser[];
 type NameStoneUser = {
   name: string;
   address: Address;
-  domain: string; // ens name
-  text_records?: {
-    avatar?: string; // url
-  };
+  domain: string;
+  text_records: NameStoneTextRecords;
 };
+
+type NameStoneTextRecords =
+  | {
+      wb_default: "subname" | "ens-primary";
+      avatar_url?: string; // url
+      bio?: string;
+    }
+  | {
+      wb_default: "subname" | "ens-primary" | "farcaster";
+      avatar_url?: string;
+      bio?: string;
+      farcaster_name: string;
+      farcaster_avatar_url: string;
+    };
 
 const nameStoneService = new NameStoneService(env.NAMESTONE_API_KEY);
 
