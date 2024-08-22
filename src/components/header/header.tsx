@@ -7,7 +7,7 @@ export default function Header() {
       <Link href="/" className="block text-2xl font-bold">
         wannabet 🤝
       </Link>
-      <ConnectButton />
+      <ConnectButton showBalance={false} />
     </header>
   );
 }
