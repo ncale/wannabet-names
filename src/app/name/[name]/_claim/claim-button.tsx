@@ -6,6 +6,7 @@ import { config } from "@/wagmi";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
+import type { ApiClaimBodyType } from "@/lib/types/api-claim-body";
 
 /**
  * This button assumes schema validation has already been
@@ -34,7 +35,7 @@ export default function ClaimButton({
         address: address,
         message,
         signature,
-      };
+      } satisfies ApiClaimBodyType;
 
       const res = await fetch("/api/claim", {
         method: "POST",

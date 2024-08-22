@@ -1,5 +1,5 @@
 import { nameStoneService } from "@/lib/namestone";
-import { apiBodySchema } from "@/lib/types/subname-api-body";
+import { apiClaimBodySchema } from "@/lib/types/api-claim-body";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyMessage } from "viem";
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     // Parse - throw if parsing fails
-    const parsed = apiBodySchema.parse(body);
+    const parsed = apiClaimBodySchema.parse(body);
 
     // Verify signature - return if invalid
     const valid = await verifyMessage({
