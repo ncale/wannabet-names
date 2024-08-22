@@ -123,7 +123,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
             <Button
               type="submit"
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              disabled={form.formState.isSubmitting || !form.formState.isDirty}
             >
               {form.formState.isSubmitting ? "Saving..." : "Save"}
             </Button>
