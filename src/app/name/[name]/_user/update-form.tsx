@@ -24,6 +24,7 @@ import UserAvatar from "./user-avatar";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();
@@ -110,10 +111,12 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
               <FormItem>
                 <FormLabel className="font-semibold text-base">Bio</FormLabel>
                 <FormControl>
-                  <Textarea
+                  <AutosizeTextarea
                     disabled={!isUser}
                     placeholder="Tell everyone about yourself"
                     className="text-base"
+                    minHeight={70}
+                    maxHeight={100}
                     {...field}
                   />
                 </FormControl>
