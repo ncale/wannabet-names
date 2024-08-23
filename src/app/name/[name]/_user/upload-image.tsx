@@ -32,7 +32,7 @@ export default function UploadImageButton({
         <span
           onClick={() => !disabled && open()}
           className={cn(
-            "w-fit rounded-full h-fit",
+            "w-fit rounded-full h-fit shadow-xl",
             disabled ? "cursor-default" : "cursor-pointer"
           )}
         >

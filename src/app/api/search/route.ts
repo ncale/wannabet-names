@@ -13,8 +13,13 @@ export async function GET(req: NextRequest) {
     // Parse - throw if parsing fails
     const parsed = subnameSchema.parse(query);
 
-    // Run service - throw if searching fails
-    const namestoneRes = await nameStoneService.searchName(parsed);
+    // Run service - return null if service fails
+    let namestoneRes;
+    try {
+      namestoneRes = await nameStoneService.searchName(parsed);
+    } catch (error) {
+      namestoneRes = null;
+    }
 
     return NextResponse.json(
       { message: "Success", data: namestoneRes },
