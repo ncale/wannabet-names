@@ -1,11 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { Input } from "../ui/input";
+import { Input } from "../../components/ui/input";
 import { useState } from "react";
 import { NameStoneUser } from "@/lib/namestone";
 import { useDebounce } from "@/lib/hooks";
-import { Badge } from "../ui/badge";
+import { Badge } from "../../components/ui/badge";
 import { subnameSchema } from "@/lib/types/subname";
 import Link from "next/link";
 
