@@ -17,15 +17,13 @@ import { config } from "@/wagmi";
 import type { ApiUpdateBodyType } from "@/lib/types/api-update-body";
 import { type UpdateFormType, updateFormSchema } from "@/lib/types/update-form";
 import { H1 } from "@/components/headings";
-import { Textarea } from "@/components/ui/textarea";
 import type { NameStoneUser } from "@/lib/namestone";
 import { useAccount } from "wagmi";
-import UserAvatar from "./user-avatar";
-import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
 import { toast } from "sonner";
+import UploadImageButton from "./upload-image";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();
@@ -42,6 +40,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
       bio: user.text_records.bio || "",
     },
   });
+  form.watch("avatarUrl");
 
   const router = useRouter();
   async function onSubmit(values: UpdateFormType) {
@@ -86,24 +85,13 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         onSubmit={form.handleSubmit(onSubmit, console.log)}
         className="space-y-2 flex flex-col items-center w-full max-w-md mx-auto"
       >
-        <UserAvatar user={user} />
-        <FormField
-          control={form.control}
-          name="avatarUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="sr-only">Avatar URL</FormLabel>
-              <FormControl>
-                <Input
-                  disabled={true || !isUser}
-                  placeholder="Avatar URL"
-                  className="text-base"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+        <UploadImageButton
+          user={user}
+          setUrl={(url: string) => {
+            form.setValue("avatarUrl", url, { shouldDirty: true });
+          }}
+          disabled={!isUser}
+          urlOverride={form.getValues("avatarUrl")}
         />
         <H1 className="pt-4">{user.name}.wannabet.eth</H1>
         <p>Owner: {abbreviateHex(user.address, 4)}</p>

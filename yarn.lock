@@ -19,6 +19,52 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@cloudinary-util/types@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary-util/types/-/types-1.2.0.tgz#c67ee4c4948236327872239165bf798eeeb899c5"
+  integrity sha512-2Mo5juB1HV+GmVLq2+bU0Yg5FB6r+csbHyDN6njc0AqkEkp+AW+Q6kYbbTYkT7zk3x9tBWfKn3lfR7wUCwowJw==
+
+"@cloudinary-util/types@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary-util/types/-/types-1.3.0.tgz#cbc8dc5e8a74e82f32095c600c01cfe3004299be"
+  integrity sha512-vDSr49G2QJaLlp7zWs8XuiSjKCO8ucCyS1IhrMvXJTUfby+w2eIguPwtJ0ho7pQgUGHnZY+b0aaN7hBTjhHUzw==
+
+"@cloudinary-util/url-loader@5.6.1":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@cloudinary-util/url-loader/-/url-loader-5.6.1.tgz#1757dc93b19f7933ab29cbf032853238977716fe"
+  integrity sha512-8I2VxzqYmc29elf8EMMiDOJOLivCIXqinF4HJ2ZniPktP2MdKrU+w2QCaEaelTQYeQwRa+ee0zBOtWP1xcNUew==
+  dependencies:
+    "@cloudinary-util/types" "1.3.0"
+    "@cloudinary-util/util" "3.2.0"
+    "@cloudinary/url-gen" "1.15.0"
+    zod "^3.22.4"
+
+"@cloudinary-util/util@3.2.0", "@cloudinary-util/util@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary-util/util/-/util-3.2.0.tgz#cdfb15ca0f04063203109ffbf3a5bc6de7f94c2b"
+  integrity sha512-VJBqAT3W0HQ9kyMagv+EzXkM/VYR9Ks01ewGxsS8T8b2N0NZFPAhYKeU2H9fOXSl6BVrD6aVYjJZAoT8pfQIyA==
+
+"@cloudinary/transformation-builder-sdk@^1.10.0", "@cloudinary/transformation-builder-sdk@^1.14.0":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@cloudinary/transformation-builder-sdk/-/transformation-builder-sdk-1.14.1.tgz#aa2a75b1c04ddba84f92d2ac3ce29d29a8c1cbca"
+  integrity sha512-z49To4r3byg7zHsOGKsw/nHef5B9W3wSBdDsGoY7JOj75kbvmSlP4MCkS0JU3Bv57EvYYw5ymalPz+bvRXmPlA==
+  dependencies:
+    "@cloudinary/url-gen" "^1.7.0"
+
+"@cloudinary/url-gen@1.15.0":
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary/url-gen/-/url-gen-1.15.0.tgz#a55c9b51cb27301e0bdc4d60e44a7e73d13db103"
+  integrity sha512-bjU67eZxLUgoRy/Plli4TQio7q6P31OYqnEgXxeN9TKXrzr6h0DeEdIUhKI9gy3HkEBWXWWJIPh7j7gkOJPnyA==
+  dependencies:
+    "@cloudinary/transformation-builder-sdk" "^1.10.0"
+
+"@cloudinary/url-gen@^1.7.0":
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary/url-gen/-/url-gen-1.20.0.tgz#1b4c2433fda9d14a515ba6582d10243b9fc64ad9"
+  integrity sha512-SWtxDOZeROocIYhubtlrSvKlf1H7wBeVaIWqOOvz8TxbHvMLZanRHyNUv8YSxIsrzrjkLk1sI0Q2fr+6FkcqzA==
+  dependencies:
+    "@cloudinary/transformation-builder-sdk" "^1.14.0"
+
 "@coinbase/wallet-sdk@4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@coinbase/wallet-sdk/-/wallet-sdk-4.0.4.tgz#634cd89bac93eeaf381a1f026476794e53431ed6"
@@ -1132,6 +1178,11 @@
   integrity sha512-sW1qRwoCDqOFku67xng4Y5z6NPK1DS347jR4RiX9wFHrmyqpbXgUjPIjT3fodezdJAaSJD/6CvWb0cl05J8zNQ==
   dependencies:
     "@tanstack/query-core" "5.51.24"
+
+"@tsconfig/recommended@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.7.tgz#fdd95fc2c8d643c8b4a8ca45fd68eea248512407"
+  integrity sha512-xiNMgCuoy4mCL4JTywk9XFs5xpRUcKxtWEcMR6FNMtsgewYTIgIR+nvlP4A4iRCAzRsHMnPhvTRrzp4AGcRTEA==
 
 "@types/debug@^4.1.7":
   version "4.1.12"
@@ -3965,6 +4016,16 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
+next-cloudinary@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/next-cloudinary/-/next-cloudinary-6.10.1.tgz#e550cb96d237b215b4d51065bf1502091882c317"
+  integrity sha512-ag2+ACnhl8RwYB2IUvdrCBTm+3KFIOVaBbLdrFui3BhCp4oz9HbrztZ9Qc4qu4CxYmDMjC14KFIMomrloxhsxQ==
+  dependencies:
+    "@cloudinary-util/types" "1.2.0"
+    "@cloudinary-util/url-loader" "5.6.1"
+    "@cloudinary-util/util" "^3.2.0"
+    "@tsconfig/recommended" "^1.0.7"
+
 next-themes@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.3.0.tgz#b4d2a866137a67d42564b07f3a3e720e2ff3871a"
@@ -5774,7 +5835,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.23.8:
+zod@^3.22.4, zod@^3.23.8:
   version "3.23.8"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
   integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
