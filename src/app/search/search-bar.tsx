@@ -2,12 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { Input } from "../../components/ui/input";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { NameStoneUser } from "@/lib/namestone";
 import { useDebounce } from "@/lib/hooks";
 import { Badge } from "../../components/ui/badge";
 import { subnameSchema } from "@/lib/types/subname";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
@@ -17,9 +18,9 @@ export default function SearchBar() {
   const parsedQuery = subnameSchema.safeParse(debouncedQuery);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["search", debouncedQuery],
+    queryKey: ["search", parsedQuery.data],
     queryFn: async () => {
-      const res = await fetch(`/api/search?q=${query}`);
+      const res = await fetch(`/api/search?q=${parsedQuery.data}`);
       const data = await res.json();
       return data.data as NameStoneUser;
     },
@@ -30,8 +31,10 @@ export default function SearchBar() {
     setQuery(value);
   }
 
+  const isReady = query.length > 0 && debouncedQuery.length > 0;
+
   return (
-    <div className="space-y-2 border rounded-xl pb-2">
+    <div className={cn("space-y-2 rounded-xl pb-2", isReady ? "border" : "")}>
       <Input
         className="text-xl rounded-xl py-6 px-4"
         type="search"
@@ -39,32 +42,33 @@ export default function SearchBar() {
         onChange={(e) => handleChange(e.target.value)}
         placeholder="Search for a subname"
       />
-      <div className="*:px-4 font-semibold">
-        {parsedQuery.success ? (
-          isLoading ? (
-            <div className="py-2">Loading...</div>
+      {isReady && (
+        <div className="*:px-4 font-semibold">
+          {parsedQuery.success ? (
+            isLoading ? (
+              <div className="py-2">Loading...</div>
+            ) : (
+              <Link
+                href={`/name/${parsedQuery.data}`}
+                className="flex justify-between hover:bg-muted py-2"
+              >
+                {parsedQuery.data}.wannabet.eth
+                {data ? (
+                  <Badge variant="search-reserved">Reserved</Badge>
+                ) : (
+                  <Badge variant="search-available">Available</Badge>
+                )}
+              </Link>
+            )
           ) : (
-            <Link
-              href={`/name/${parsedQuery.data}`}
-              className="flex justify-between hover:bg-muted py-2"
-            >
-              {parsedQuery.data}.wannabet.eth
-              {data ? (
-                <Badge variant="search-reserved">Reserved</Badge>
-              ) : (
-                <Badge variant="search-available">Available</Badge>
-              )}
-            </Link>
-          )
-        ) : (
-          query !== "" &&
-          parsedQuery.error.errors.map((error, i) => (
-            <div className="text-red-700 text-sm" key={i}>
-              {error.message}
-            </div>
-          ))
-        )}
-      </div>
+            parsedQuery.error.errors.map((error, i) => (
+              <div className="text-red-700 text-sm" key={i}>
+                {error.message}
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 }
