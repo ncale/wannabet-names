@@ -50,9 +50,9 @@ export default function SearchBar() {
             >
               {parsedQuery.data}.wannabet.eth
               {data ? (
-                <Badge variant="destructive">Taken</Badge>
+                <Badge variant="search-reserved">Reserved</Badge>
               ) : (
-                <Badge variant="default">Available</Badge>
+                <Badge variant="search-available">Available</Badge>
               )}
             </Link>
           )
