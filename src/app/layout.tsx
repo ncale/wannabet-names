@@ -3,6 +3,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
 import Providers from "./providers";
 import Header from "@/components/header/header";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Wannabet Subnames",
@@ -22,6 +23,7 @@ export default function RootLayout({
             <Header />
 
             {children}
+            <Toaster richColors position="top-center" />
           </div>
         </Providers>
       </body>

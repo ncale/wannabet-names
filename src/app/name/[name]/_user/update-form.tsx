@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
+import { toast } from "sonner";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();
@@ -47,18 +48,18 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
     console.log("submitting...", values);
     if (!address) return;
 
-    const message = `I want to update the text records for my subname: ${user.name}.wannabet.eth`;
-    const signature = await signMessage(config, { message });
-    const body: ApiUpdateBodyType = {
-      name: user.name,
-      address: address,
-      message,
-      signature,
-      avatarUrl: values.avatarUrl,
-      bio: values.bio,
-    };
-
     try {
+      const message = `I want to update the text records for my subname: ${user.name}.wannabet.eth`;
+      const signature = await signMessage(config, { message });
+      const body: ApiUpdateBodyType = {
+        name: user.name,
+        address: address,
+        message,
+        signature,
+        avatarUrl: values.avatarUrl,
+        bio: values.bio,
+      };
+
       const res = await fetch("/api/update", {
         method: "POST",
         headers: {
@@ -73,7 +74,10 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
       }
 
       router.refresh();
-    } catch (error) {}
+      toast.success("Records updated successfully!");
+    } catch (error) {
+      toast.error("Record update failed. Please try again.");
+    }
   }
 
   return (

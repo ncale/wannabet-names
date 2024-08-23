@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import type { ApiClaimBodyType } from "@/lib/types/api-claim-body";
+import { toast } from "sonner";
 
 /**
  * This button assumes schema validation has already been
@@ -49,10 +50,12 @@ export default function ClaimButton({
     onSuccess: () => {
       console.log("success");
       router.refresh();
+      toast.success("Name claimed successfully!");
     },
     onError: (error) => {
       console.error("error");
       console.error(error);
+      toast.error("Failed to claim name");
     },
   });
 
@@ -62,13 +65,7 @@ export default function ClaimButton({
 
   return (
     <>
-      <Button
-        onClick={() => mutate()}
-        type="submit"
-        size="lg"
-        disabled={isPending}
-        className=""
-      >
+      <Button onClick={() => mutate()} size="lg" disabled={isPending}>
         {isPending ? "Claiming..." : "Claim"}
       </Button>
       {error && (
