@@ -92,6 +92,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
                 <Input
                   disabled={true || !isUser}
                   placeholder="Avatar URL"
+                  className="text-base"
                   {...field}
                 />
               </FormControl>
@@ -107,11 +108,12 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
             name="bio"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Bio</FormLabel>
+                <FormLabel className="font-semibold text-base">Bio</FormLabel>
                 <FormControl>
                   <Textarea
                     disabled={!isUser}
                     placeholder="Tell everyone about yourself"
+                    className="text-base"
                     {...field}
                   />
                 </FormControl>
