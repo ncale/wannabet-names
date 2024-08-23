@@ -4,10 +4,10 @@ import InvalidNamePage from "./_invalid/invalid-name-page";
 import ClaimNamePage from "./_claim/claim-name-page";
 import UserPage from "./_user/user-page";
 
-export async function generateStaticParams() {
-  // Empty array means static pages will be generated on first visit
-  return [];
-}
+// export async function generateStaticParams() {
+//   // Empty array means static pages will be generated on first visit
+//   return [];
+// }
 
 async function getNameStoneUser(
   name: string
