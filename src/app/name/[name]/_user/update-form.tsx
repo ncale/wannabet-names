@@ -48,7 +48,8 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
     if (!address) return;
 
     try {
-      const message = `I want to update the text records for my subname: ${user.name}.wannabet.eth`;
+      const seed = Math.random().toString(16).substring(2, 10);
+      const message = `I want to update the text records for my subname: ${user.name}.wannabet.eth\n\nseed: ${seed}`;
       const signature = await signMessage(config, { message });
       const body: ApiUpdateBodyType = {
         name: user.name,

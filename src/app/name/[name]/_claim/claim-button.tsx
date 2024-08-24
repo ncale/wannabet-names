@@ -29,7 +29,8 @@ export default function ClaimButton({
       console.log("submitting...");
       if (!address) throw new Error("No address provided");
 
-      const message = `I want to claim the subname: ${name}.wannabet.eth`;
+      const seed = Math.random().toString(16).substring(2, 10);
+      const message = `I want to claim the subname: ${name}.wannabet.eth\n\nseed: ${seed}`;
       const signature = await signMessage(config, { message });
       const body = {
         name: name,
