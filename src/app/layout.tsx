@@ -3,6 +3,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
 import Providers from "./providers";
 import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
@@ -19,10 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-background">
         <Providers>
-          <div className="px-4">
+          <div className="max-w-screen-lg mx-auto space-y-24 flex flex-col min-h-screen">
             <Header />
 
             {children}
+
+            <Footer />
             <Toaster richColors position="top-center" />
           </div>
         </Providers>

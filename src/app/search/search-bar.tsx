@@ -60,7 +60,7 @@ export default function SearchBar() {
         />
       </form>
       {isReady && (
-        <div className="*:px-4 font-semibold">
+        <div className="*:px-4 font-semibold ">
           {parsedQuery.success ? (
             isLoading ? (
               <div className="py-2">Loading...</div>
