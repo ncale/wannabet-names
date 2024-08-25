@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-background">
         <Providers>
-          <div className="max-w-screen-lg mx-auto space-y-24 flex flex-col min-h-screen">
+          <div className="px-4 relative max-w-screen-lg mx-auto space-y-16 md:space-y-24 flex flex-col min-h-screen">
             <Header />
 
             {children}

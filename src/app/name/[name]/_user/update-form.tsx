@@ -94,9 +94,9 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
           disabled={!isUser}
           urlOverride={form.getValues("avatarUrl")}
         />
-        <H1 className="pt-4">{user.name}.wannabet.eth</H1>
+        <H1 className="pt-2">{user.name}.wannabet.eth</H1>
         <p>Owner: {abbreviateHex(user.address, 4)}</p>
-        <div className="w-full space-y-4 pt-6">
+        <div className="w-full space-y-4 pt-4">
           <FormField
             control={form.control}
             name="bio"
