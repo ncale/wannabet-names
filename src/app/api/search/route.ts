@@ -21,10 +21,7 @@ export async function GET(req: NextRequest) {
       namestoneRes = null;
     }
 
-    return NextResponse.json(
-      { message: "Success", data: namestoneRes },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Success", data: namestoneRes }, { status: 200 });
   } catch (error) {
     // Catch zod error
     if (error instanceof ZodError) {
@@ -33,7 +30,7 @@ export async function GET(req: NextRequest) {
           error: "Validation failed",
           details: error.errors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Catch generic error

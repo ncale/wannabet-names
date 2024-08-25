@@ -32,8 +32,8 @@ export default function UploadImageButton({
         <span
           onClick={() => !disabled && open()}
           className={cn(
-            "w-fit rounded-full h-fit shadow-xl",
-            disabled ? "cursor-default" : "cursor-pointer"
+            "h-fit w-fit rounded-full shadow-xl",
+            disabled ? "cursor-default" : "cursor-pointer",
           )}
         >
           <UserAvatar user={user} urlOverride={urlOverride} />

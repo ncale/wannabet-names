@@ -11,16 +11,12 @@ export const metadata: Metadata = {
   description: "Claim free subdomains of wannabet.eth",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-background">
         <Providers>
-          <div className="px-4 relative max-w-screen-lg mx-auto space-y-16 md:space-y-24 flex flex-col min-h-screen">
+          <div className="relative mx-auto flex min-h-screen max-w-screen-lg flex-col space-y-16 px-4 md:space-y-24">
             <Header />
 
             {children}

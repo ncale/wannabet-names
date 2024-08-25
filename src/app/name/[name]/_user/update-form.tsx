@@ -30,7 +30,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
 
   const isUser = useMemo(
     () => (address ? isSameAddress(user.address, address) : false),
-    [address, user.address]
+    [address, user.address],
   );
 
   const form = useForm<UpdateFormType>({
@@ -84,7 +84,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, console.log)}
-        className="space-y-2 flex flex-col items-center w-full max-w-md mx-auto"
+        className="mx-auto flex w-full max-w-md flex-col items-center space-y-2"
       >
         <UploadImageButton
           user={user}
@@ -102,7 +102,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
             name="bio"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold text-base">Bio</FormLabel>
+                <FormLabel className="text-base font-semibold">Bio</FormLabel>
                 <FormControl>
                   <AutosizeTextarea
                     disabled={!isUser}

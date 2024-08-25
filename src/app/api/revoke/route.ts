@@ -19,10 +19,7 @@ export async function POST(req: NextRequest) {
     // Revalidate cache
     revalidatePath(`/name/${parsed}`);
 
-    return NextResponse.json(
-      { message: "Success", data: parsed },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Success", data: parsed }, { status: 200 });
   } catch (error) {
     // Catch generic error
     if (error instanceof Error) {

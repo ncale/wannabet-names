@@ -9,7 +9,7 @@ export default function UserAvatar({
   urlOverride?: string;
 }) {
   return (
-    <Avatar className="w-32 h-32">
+    <Avatar className="h-32 w-32">
       <AvatarImage
         src={urlOverride || user.text_records.avatar_url}
         alt={`${user.name} user avatar`}

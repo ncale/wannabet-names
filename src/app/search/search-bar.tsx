@@ -52,7 +52,7 @@ export default function SearchBar() {
         }}
       >
         <Input
-          className="text-xl rounded-xl py-6 px-4"
+          className="rounded-xl px-4 py-6 text-xl"
           type="search"
           value={query}
           onChange={(e) => handleChange(e.target.value)}
@@ -60,14 +60,14 @@ export default function SearchBar() {
         />
       </form>
       {isReady && (
-        <div className="*:px-4 font-semibold ">
+        <div className="font-semibold *:px-4">
           {parsedQuery.success ? (
             isLoading ? (
               <div className="py-2">Loading...</div>
             ) : (
               <Link
                 href={`/name/${parsedQuery.data}`}
-                className="flex justify-between hover:bg-muted py-2"
+                className="flex justify-between py-2 hover:bg-muted"
               >
                 {parsedQuery.data}.wannabet.eth
                 {data ? (
@@ -79,7 +79,7 @@ export default function SearchBar() {
             )
           ) : (
             parsedQuery.error.errors.map((error, i) => (
-              <div className="text-red-700 text-sm" key={i}>
+              <div className="text-sm text-red-700" key={i}>
                 {error.message}
               </div>
             ))

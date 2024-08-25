@@ -69,9 +69,7 @@ export default function ClaimButton({
       <Button onClick={() => mutate()} size="lg" disabled={isPending}>
         {isPending ? "Claiming..." : "Claim"}
       </Button>
-      {error && (
-        <p className="text-red-600 font-semibold pt-1">{error.message}</p>
-      )}
+      {error && <p className="pt-1 font-semibold text-red-600">{error.message}</p>}
     </>
   );
 }

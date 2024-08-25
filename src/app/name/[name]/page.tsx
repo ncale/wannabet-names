@@ -9,9 +9,7 @@ import UserPage from "./_user/user-page";
 //   return [];
 // }
 
-async function getNameStoneUser(
-  name: string
-): Promise<NameStoneUser | undefined> {
+async function getNameStoneUser(name: string): Promise<NameStoneUser | undefined> {
   try {
     return await nameStoneService.searchName(name);
   } catch (error) {
@@ -19,11 +17,7 @@ async function getNameStoneUser(
   }
 }
 
-export default async function NamePage({
-  params,
-}: {
-  params: { name: string };
-}) {
+export default async function NamePage({ params }: { params: { name: string } }) {
   const parsed = subnameSchema.safeParse(params.name);
   if (parsed.success === false) {
     return <InvalidNamePage />;

@@ -34,30 +34,29 @@ export async function POST(req: NextRequest) {
     if (nameAccount.address !== parsed.address) {
       return NextResponse.json(
         { error: "Name does not belong to the given address" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     // Run service - throw if setting fails
-    const namestoneRes = await nameStoneService.setName(
-      parsed.name,
-      parsed.address,
-      { avatar_url: parsed.avatarUrl, bio: parsed.bio }
-    );
+    const namestoneRes = await nameStoneService.setName(parsed.name, parsed.address, {
+      avatar_url: parsed.avatarUrl,
+      bio: parsed.bio,
+    });
 
     // Revalidate cache
     revalidatePath(`/name/${parsed.name}`);
 
     return NextResponse.json(
       { message: "Success" }, // data: namestoneRes },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     // Catch zod error
     if (error instanceof ZodError) {
       return NextResponse.json(
         { error: "Validation failed", details: error.errors },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Catch generic error

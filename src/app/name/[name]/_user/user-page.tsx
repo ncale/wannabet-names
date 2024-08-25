@@ -3,7 +3,7 @@ import UpdateForm from "./update-form";
 
 export default function UserPage({ user }: { user: NameStoneUser }) {
   return (
-    <main className="max-w-xl w-full self-center">
+    <main className="w-full max-w-xl self-center">
       <UpdateForm user={user} />
     </main>
   );

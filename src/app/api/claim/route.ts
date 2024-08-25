@@ -31,10 +31,7 @@ export async function POST(req: NextRequest) {
     // Check if user already has a name - return if true
     const existingName = await nameStoneService.getName(parsed.address);
     if (existingName) {
-      return NextResponse.json(
-        { error: "Address has already claimed name" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Address has already claimed name" }, { status: 403 });
     }
 
     // Check for conflict - return if true
@@ -44,24 +41,18 @@ export async function POST(req: NextRequest) {
     }
 
     // Run service - throw if setting fails
-    const namestoneRes = await nameStoneService.setName(
-      parsed.name,
-      parsed.address
-    );
+    const namestoneRes = await nameStoneService.setName(parsed.name, parsed.address);
 
     // Revalidate cache
     revalidatePath(`/name/${parsed.name}`);
 
-    return NextResponse.json(
-      { message: "Success", data: namestoneRes },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "Success", data: namestoneRes }, { status: 200 });
   } catch (error) {
     // Catch zod error
     if (error instanceof ZodError) {
       return NextResponse.json(
         { error: "Validation failed", details: error.errors },
-        { status: 400 }
+        { status: 400 },
       );
     }
     // Catch generic error

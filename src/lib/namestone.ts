@@ -18,21 +18,16 @@ class NameStoneService {
   async #getData<T>(
     path: "get-names" | "search-names",
     queryParams: string,
-    cacheTags?: string[]
+    cacheTags?: string[],
   ): Promise<T> {
-    const res = await fetch(
-      `${this.#BASE_URL}${path}?domain=${this.#DOMAIN}&${queryParams}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: this.#apiKey,
-        },
-        next: cacheTags
-          ? { revalidate: 0, tags: cacheTags }
-          : { revalidate: 86400 },
-      }
-    );
+    const res = await fetch(`${this.#BASE_URL}${path}?domain=${this.#DOMAIN}&${queryParams}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: this.#apiKey,
+      },
+      next: cacheTags ? { revalidate: 0, tags: cacheTags } : { revalidate: 86400 },
+    });
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json() as Promise<T>;
   }
@@ -40,7 +35,7 @@ class NameStoneService {
   /** General purpose function for sending a POST request to namestone.xyz api */
   async #postData<TBody>(
     path: "set-name" | "claim-name" | "revoke-name" | "set-domain",
-    body: TBody
+    body: TBody,
   ) {
     const res = await fetch(this.#BASE_URL + path, {
       method: "POST",
@@ -56,11 +51,7 @@ class NameStoneService {
   }
 
   /** Posts to the namestone.xyz "Set Name" route */
-  async setName(
-    name: string,
-    address: Address,
-    options?: { avatar_url?: string; bio?: string }
-  ) {
+  async setName(name: string, address: Address, options?: { avatar_url?: string; bio?: string }) {
     const body = {
       domain: this.#DOMAIN,
       name,
@@ -75,11 +66,7 @@ class NameStoneService {
   }
 
   /** Posts to the namestone.xyz "Claim Name" route */
-  async claimName(
-    name: string,
-    address: Address,
-    options?: { avatar_url?: string; bio?: string }
-  ) {
+  async claimName(name: string, address: Address, options?: { avatar_url?: string; bio?: string }) {
     const body = {
       domain: this.#DOMAIN,
       name,
@@ -96,43 +83,28 @@ class NameStoneService {
   /** Gets a list of names */ // ! Looking into pagination
   async getNames(limit: number): Promise<NameStoneResponse> {
     const queryParams = `limit=${limit}`;
-    const data = await this.#getData<NameStoneResponse>(
-      "get-names",
-      queryParams
-    );
+    const data = await this.#getData<NameStoneResponse>("get-names", queryParams);
     return data;
   }
 
   /** Gets a single name matching an address */
   async getName(address: Address): Promise<NameStoneUser | null> {
     const queryParams = `address=${address}&limit=1`;
-    const data = await this.#getData<NameStoneResponse>(
-      "get-names",
-      queryParams,
-      [address]
-    );
+    const data = await this.#getData<NameStoneResponse>("get-names", queryParams, [address]);
     return data[0] || null;
   }
 
   /** Searches names based on a string query */ // ! Looking into pagination
   async searchNames(query: string, limit: number): Promise<NameStoneResponse> {
     const queryParams = `name=${query}&limit=${limit}`;
-    const data = await this.#getData<NameStoneResponse>(
-      "search-names",
-      queryParams,
-      [query]
-    );
+    const data = await this.#getData<NameStoneResponse>("search-names", queryParams, [query]);
     return data;
   }
 
   /** Searches a name. Throws if an exact match is not found */
   async searchName(name: string): Promise<NameStoneUser> {
     const queryParams = `name=${name}&limit=1`;
-    const data = await this.#getData<NameStoneResponse>(
-      "search-names",
-      queryParams,
-      [name]
-    );
+    const data = await this.#getData<NameStoneResponse>("search-names", queryParams, [name]);
     if (data.length === 0 || data[0].name !== name) {
       throw new Error(`No user found matching name: ${name}`);
     }
@@ -183,9 +155,4 @@ type NameStoneTextRecords =
 
 const nameStoneService = new NameStoneService(env.NAMESTONE_API_KEY);
 
-export {
-  nameStoneService,
-  NameStoneService,
-  type NameStoneUser,
-  type NameStoneResponse,
-};
+export { nameStoneService, NameStoneService, type NameStoneUser, type NameStoneResponse };

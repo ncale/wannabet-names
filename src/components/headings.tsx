@@ -9,7 +9,7 @@ export function H1({
   className?: string;
 }) {
   return (
-    <h1 className={cn("font-semibold text-3xl", className)} {...props}>
+    <h1 className={cn("text-3xl font-semibold", className)} {...props}>
       {children}
     </h1>
   );
@@ -24,7 +24,7 @@ export function H2({
   className?: string;
 }) {
   return (
-    <h2 className={cn("font-semibold text-3xl", className)} {...props}>
+    <h2 className={cn("text-3xl font-semibold", className)} {...props}>
       {children}
     </h2>
   );
@@ -39,7 +39,7 @@ export function H3({
   className?: string;
 }) {
   return (
-    <h3 className={cn("font-semibold text-3xl", className)} {...props}>
+    <h3 className={cn("text-3xl font-semibold", className)} {...props}>
       {children}
     </h3>
   );

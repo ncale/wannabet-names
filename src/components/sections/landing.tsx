@@ -3,20 +3,19 @@ import { Button } from "../ui/button";
 
 export default function LandingSection() {
   return (
-    <section className="py-8 px-4 text-center lg:py-16 lg:px-12">
-      <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-foreground md:text-5xl lg:text-6xl">
-        Claim free subdomains of{" "}
-        <span className="text-primary">wannabet.eth</span>
+    <section className="px-4 py-8 text-center lg:px-12 lg:py-16">
+      <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-foreground md:text-5xl lg:text-6xl">
+        Claim free subdomains of <span className="text-primary">wannabet.eth</span>
       </h1>
-      <p className="mb-8 text-lg font-normal text-muted-foreground lg:text-xl sm:px-16 xl:px-48">
+      <p className="mb-8 text-lg font-normal text-muted-foreground sm:px-16 lg:text-xl xl:px-48">
         Yep. Free. Just connect your wallet and claim.
       </p>
-      <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+      <div className="mb-8 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 lg:mb-16">
         <Button asChild size="lg" variant="default" className="mt-8">
           <Link href="/search">
             Get started
             <svg
-              className="ml-2 -mr-1 w-5 h-5"
+              className="-mr-1 ml-2 h-5 w-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
