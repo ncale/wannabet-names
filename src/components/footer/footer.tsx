@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="absolute bottom-0 left-0 right-0 rounded-lg shadow dark:bg-gray-800">
@@ -10,12 +12,12 @@ export default function Footer() {
         </span>
         <ul className="mt-3 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
           <li>
-            <a href="#" className="me-4 hover:underline md:me-6">
+            <Link href="/faq" className="me-4 hover:underline md:me-6">
               FAQ
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="https://t.me/wannabettt" className="hover:underline">
               Contact
             </a>
           </li>
