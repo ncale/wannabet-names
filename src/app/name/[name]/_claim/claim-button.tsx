@@ -13,6 +13,7 @@ import { signMessage } from "@wagmi/core";
 import { config } from "@/wagmi";
 import type { ApiClaimBodyType } from "@/lib/types/api-claim-body";
 import { toast } from "sonner";
+import ConnectButton from "@/components/connect-button";
 
 /**
  * This button assumes schema validation has already been
@@ -65,16 +66,16 @@ export default function ClaimButton({
     },
   });
 
-  if (!address) {
-    return "Connect wallet to claim";
-  }
-
   return (
-    <>
-      <Button onClick={() => mutate()} size="lg" disabled={isPending}>
-        {isPending ? "Claiming..." : "Claim"}
-      </Button>
-      {error && <p className="pt-1 font-semibold text-red-600">{error.message}</p>}
-    </>
+    <div className="flex flex-col items-center space-y-1">
+      {!address ? (
+        <ConnectButton />
+      ) : (
+        <Button onClick={() => mutate()} size="lg" disabled={isPending}>
+          {isPending ? "Claiming..." : "Claim"}
+        </Button>
+      )}
+      <p className="pt-1 font-semibold text-red-600">{error && error.message}</p>
+    </div>
   );
 }

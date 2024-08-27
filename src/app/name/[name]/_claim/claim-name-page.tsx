@@ -1,5 +1,7 @@
 import { H1 } from "@/components/ui/headings";
-import ClaimButton from "./claim-button";
+
+import dynamic from "next/dynamic";
+const ClaimButton = dynamic(() => import("./claim-button"), { ssr: false });
 
 /**
  * This page is displayed when no user has been found
