@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
 
     // Run service - throw if setting fails
     const namestoneRes = await nameStoneService.setName(parsed.name, parsed.address, {
-      avatar_url: parsed.avatarUrl,
-      bio: parsed.bio,
+      avatar: parsed.avatar,
+      description: parsed.description,
     });
 
     // Revalidate cache

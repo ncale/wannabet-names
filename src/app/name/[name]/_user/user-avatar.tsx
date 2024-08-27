@@ -10,10 +10,7 @@ export default function UserAvatar({
 }) {
   return (
     <Avatar className="h-32 w-32 shadow-xl">
-      <AvatarImage
-        src={urlOverride || user.text_records.avatar_url}
-        alt={`${user.name} user avatar`}
-      />
+      <AvatarImage src={urlOverride || user.text_records.avatar} alt={`${user.name} user avatar`} />
       <AvatarFallback className="text-center text-3xl text-muted-foreground">
         {user.name.slice(0, 2).toUpperCase()}
       </AvatarFallback>

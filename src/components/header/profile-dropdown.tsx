@@ -5,8 +5,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -32,7 +30,7 @@ export default function ProfileDropdown({
           className="flex min-w-28 items-center justify-start gap-x-2"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src={namestoneRecord?.text_records.avatar_url} />
+            <AvatarImage src={namestoneRecord?.text_records.avatar} />
             <AvatarFallback>0x</AvatarFallback>
           </Avatar>
           <div>{namestoneRecord ? namestoneRecord.name : backupName}</div>

@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-export const avatarUrlSchema = z.string();
-export const bioSchema = z.string().max(160);
+export const avatarSchema = z.string();
+export const descriptionSchema = z.string().max(160);
 
 export const updateFormSchema = z.object({
-  avatarUrl: avatarUrlSchema.optional(),
-  bio: bioSchema.optional(),
+  avatar: avatarSchema.optional(),
+  description: descriptionSchema.optional(),
 });
 
 export type UpdateFormType = z.infer<typeof updateFormSchema>;

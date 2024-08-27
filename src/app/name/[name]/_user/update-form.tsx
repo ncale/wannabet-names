@@ -44,11 +44,11 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const form = useForm<UpdateFormType>({
     resolver: zodResolver(updateFormSchema),
     defaultValues: {
-      avatarUrl: user.text_records.avatar_url || "",
-      bio: user.text_records.bio || "",
+      avatar: user.text_records.avatar || "",
+      description: user.text_records.description || "",
     },
   });
-  form.watch("avatarUrl");
+  form.watch("avatar");
 
   const router = useRouter();
   async function onSubmit(values: UpdateFormType) {
@@ -64,8 +64,8 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         address: address,
         message,
         signature,
-        avatarUrl: values.avatarUrl,
-        bio: values.bio,
+        avatar: values.avatar,
+        description: values.description,
       };
 
       const res = await fetch("/api/update", {
@@ -94,10 +94,10 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         onSubmit={form.handleSubmit(onSubmit, console.log)}
         className="mx-auto flex w-full max-w-md flex-col items-center space-y-2"
       >
-        <UserAvatar user={user} urlOverride={form.getValues("avatarUrl")} />
+        <UserAvatar user={user} urlOverride={form.getValues("avatar")} />
         <UploadImageButton
           setUrl={(url: string) => {
-            form.setValue("avatarUrl", url, { shouldDirty: true });
+            form.setValue("avatar", url, { shouldDirty: true });
           }}
           disabled={!isUser}
         />
@@ -106,7 +106,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         <div className="w-full space-y-4 pt-4">
           <FormField
             control={form.control}
-            name="bio"
+            name="description"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-base font-semibold">Bio</FormLabel>

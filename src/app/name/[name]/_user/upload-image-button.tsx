@@ -1,9 +1,6 @@
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
-import UserAvatar from "./user-avatar";
-import { NameStoneUser } from "@/lib/namestone";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { UploadIcon } from "@radix-ui/react-icons";
 

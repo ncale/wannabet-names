@@ -2,13 +2,13 @@ import { z } from "zod";
 import { subnameSchema } from "./subname";
 import { addressSchema } from "./address";
 import { hexSchema } from "./hex";
-import { avatarUrlSchema, bioSchema } from "./update-form";
+import { avatarSchema, descriptionSchema } from "./update-form";
 
 export const apiUpdateBodySchema = z.object({
   name: subnameSchema,
   address: addressSchema,
-  avatarUrl: avatarUrlSchema.optional(),
-  bio: bioSchema.optional(),
+  avatar: avatarSchema.optional(),
+  description: descriptionSchema.optional(),
   message: z.string(),
   signature: hexSchema,
 });

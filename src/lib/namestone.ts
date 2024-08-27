@@ -51,30 +51,38 @@ class NameStoneService {
   }
 
   /** Posts to the namestone.xyz "Set Name" route */
-  async setName(name: string, address: Address, options?: { avatar_url?: string; bio?: string }) {
+  async setName(
+    name: string,
+    address: Address,
+    options?: { avatar?: string; description?: string },
+  ) {
     const body = {
       domain: this.#DOMAIN,
       name,
       address,
       text_records: {
         wb_default: "subname",
-        avatar_url: options ? options.avatar_url : undefined,
-        bio: options ? options.bio : undefined,
+        avatar: options ? options.avatar : undefined,
+        description: options ? options.description : undefined,
       },
     } satisfies NameStoneUser;
     return this.#postData<NameStoneUser>("set-name", body);
   }
 
   /** Posts to the namestone.xyz "Claim Name" route */
-  async claimName(name: string, address: Address, options?: { avatar_url?: string; bio?: string }) {
+  async claimName(
+    name: string,
+    address: Address,
+    options?: { avatar?: string; description?: string },
+  ) {
     const body = {
       domain: this.#DOMAIN,
       name,
       address,
       text_records: {
         wb_default: "subname",
-        avatar_url: options ? options.avatar_url : undefined,
-        bio: options ? options.bio : undefined,
+        avatar: options ? options.avatar : undefined,
+        description: options ? options.description : undefined,
       },
     } satisfies NameStoneUser;
     return this.#postData<NameStoneUser>("claim-name", body);
@@ -142,15 +150,15 @@ type NameStoneUser = {
 type NameStoneTextRecords =
   | {
       wb_default: "subname" | "ens-primary";
-      avatar_url?: string; // url
-      bio?: string;
+      avatar?: string; // url
+      description?: string;
     }
   | {
       wb_default: "subname" | "ens-primary" | "farcaster";
-      avatar_url?: string;
-      bio?: string;
+      avatar?: string;
+      description?: string;
       farcaster_name: string;
-      farcaster_avatar_url: string;
+      farcaster_avatar: string;
     };
 
 const nameStoneService = new NameStoneService(env.NAMESTONE_API_KEY);
