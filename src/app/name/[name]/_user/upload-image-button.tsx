@@ -4,17 +4,15 @@ import { CldUploadWidget } from "next-cloudinary";
 import UserAvatar from "./user-avatar";
 import { NameStoneUser } from "@/lib/namestone";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { UploadIcon } from "@radix-ui/react-icons";
 
 export default function UploadImageButton({
-  user,
   setUrl,
   disabled,
-  urlOverride,
 }: {
-  user: NameStoneUser;
   setUrl: (url: string) => void;
   disabled?: boolean;
-  urlOverride?: string;
 }) {
   return (
     <CldUploadWidget
@@ -29,15 +27,17 @@ export default function UploadImageButton({
       }}
     >
       {({ open }) => (
-        <span
-          onClick={() => !disabled && open()}
-          className={cn(
-            "h-fit w-fit rounded-full shadow-xl",
-            disabled ? "cursor-default" : "cursor-pointer",
-          )}
+        <Button
+          onClick={() => open()}
+          variant="outline"
+          type="button"
+          disabled={disabled}
+          size="sm"
+          className="h-fit w-fit space-x-2 text-base font-semibold"
         >
-          <UserAvatar user={user} urlOverride={urlOverride} />
-        </span>
+          <UploadIcon />
+          <span>Upload</span>
+        </Button>
       )}
     </CldUploadWidget>
   );

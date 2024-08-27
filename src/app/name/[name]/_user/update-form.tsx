@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { H1 } from "@/components/ui/headings";
-import UploadImageButton from "./upload-image";
+import UploadImageButton from "./upload-image-button";
 import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
 
 // Lib
@@ -31,6 +31,7 @@ import { type UpdateFormType, updateFormSchema } from "@/lib/types/update-form";
 import type { ApiUpdateBodyType } from "@/lib/types/api-update-body";
 import type { NameStoneUser } from "@/lib/namestone";
 import { toast } from "sonner";
+import UserAvatar from "./user-avatar";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();
@@ -93,13 +94,12 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         onSubmit={form.handleSubmit(onSubmit, console.log)}
         className="mx-auto flex w-full max-w-md flex-col items-center space-y-2"
       >
+        <UserAvatar user={user} urlOverride={form.getValues("avatarUrl")} />
         <UploadImageButton
-          user={user}
           setUrl={(url: string) => {
             form.setValue("avatarUrl", url, { shouldDirty: true });
           }}
           disabled={!isUser}
-          urlOverride={form.getValues("avatarUrl")}
         />
         <H1 className="pt-2">{user.name}.wannabet.eth</H1>
         <p>Owner: {abbreviateHex(user.address, 4)}</p>
