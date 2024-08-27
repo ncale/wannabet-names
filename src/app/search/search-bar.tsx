@@ -1,15 +1,20 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { Input } from "../../components/ui/input";
-import { useMemo, useState } from "react";
-import { NameStoneUser } from "@/lib/namestone";
-import { useDebounce } from "@/lib/hooks";
-import { Badge } from "../../components/ui/badge";
-import { subnameSchema } from "@/lib/types/subname";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+// Hooks
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { useDebounce } from "@/lib/hooks";
+
+// Components
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+
+// Lib
+import { subnameSchema } from "@/lib/types/subname";
+import type { NameStoneUser } from "@/lib/namestone";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 export default function SearchBar() {

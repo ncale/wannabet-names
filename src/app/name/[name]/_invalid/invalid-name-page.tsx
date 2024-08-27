@@ -1,4 +1,4 @@
-import { H1 } from "@/components/headings";
+import { H1 } from "@/components/ui/headings";
 import Link from "next/link";
 
 export default function InvalidNamePage() {

@@ -1,11 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { signMessage } from "@wagmi/core";
-import { config } from "@/wagmi";
+// Hooks
+import { useAccount } from "wagmi";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useAccount } from "wagmi";
+
+// Components
+import { Button } from "@/components/ui/button";
+
+// Lib
+import { signMessage } from "@wagmi/core";
+import { config } from "@/wagmi";
 import type { ApiClaimBodyType } from "@/lib/types/api-claim-body";
 import { toast } from "sonner";
 

@@ -1,7 +1,15 @@
 "use client";
 
+// React Hook Form
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
+// Hooks
+import { useAccount } from "wagmi";
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
+
+// Components
 import {
   Form,
   FormControl,
@@ -11,19 +19,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { H1 } from "@/components/ui/headings";
+import UploadImageButton from "./upload-image";
+import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
+
+// Lib
 import { abbreviateHex, isSameAddress } from "@/lib/utils";
 import { signMessage } from "@wagmi/core";
 import { config } from "@/wagmi";
-import type { ApiUpdateBodyType } from "@/lib/types/api-update-body";
 import { type UpdateFormType, updateFormSchema } from "@/lib/types/update-form";
-import { H1 } from "@/components/headings";
+import type { ApiUpdateBodyType } from "@/lib/types/api-update-body";
 import type { NameStoneUser } from "@/lib/namestone";
-import { useAccount } from "wagmi";
-import { useRouter } from "next/navigation";
-import { useMemo } from "react";
-import { AutosizeTextarea } from "@/components/ui/autosize-textarea";
 import { toast } from "sonner";
-import UploadImageButton from "./upload-image";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();

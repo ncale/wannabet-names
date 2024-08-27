@@ -1,10 +1,11 @@
 import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
+
 import Providers from "./providers";
+import { Toaster } from "sonner";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
-import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Wannabet Subnames",
