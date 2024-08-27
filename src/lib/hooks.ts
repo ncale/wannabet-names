@@ -2,18 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import { Address } from "viem";
 import type { NameStoneUser } from "./namestone";
 import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 
-export function useCurrentName(address?: Address) {
+export function useCurrentName() {
+  const { address } = useAccount();
   return useQuery({
     queryKey: ["current-subname", address],
     queryFn: async () => {
-      const res = await fetch(`/api/subname/${address}`);
+      const res = await fetch(`/api/get/${address}`);
       const data = await res.json();
       return data.data as NameStoneUser;
     },
     enabled: !!address,
-    staleTime: Infinity,
-    gcTime: Infinity,
+    // staleTime: Infinity,
+    // gcTime: Infinity,
   });
 }
 

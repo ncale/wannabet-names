@@ -1,5 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
+import WalletButton from "./wallet-button";
 
 export default function Header() {
   return (
@@ -7,7 +8,12 @@ export default function Header() {
       <Link href="/" className="block text-2xl font-bold">
         wannabet 🤝
       </Link>
-      <ConnectButton showBalance={false} />
+
+      {/* Custom connect button */}
+      <WalletButton />
+
+      {/* Default connect button */}
+      {/* <ConnectButton showBalance={false} /> */}
     </header>
   );
 }
