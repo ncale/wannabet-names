@@ -42,28 +42,30 @@ const FAQ_ITEMS = [
 
 export default function FaqPage() {
   return (
-    <section className="bg-background">
-      <div className="mx-auto max-w-screen-xl px-4 pb-16 lg:px-6">
-        <H2 className="mb-2">Frequently asked questions</H2>
-        <Separator />
-        <div className="grid pt-8 text-left md:grid-cols-2 md:gap-16">
-          <div>
-            {FAQ_ITEMS.slice(0, 5).map((item, i) => (
-              <div className="mb-10" key={i}>
-                <FaqItem q={item.q} a={item.a} />
-              </div>
-            ))}
-          </div>
-          <div>
-            {FAQ_ITEMS.slice(5).map((item, i) => (
-              <div className="mb-10" key={i}>
-                <FaqItem q={item.q} a={item.a} />
-              </div>
-            ))}
+    <>
+      <section>
+        <div className="w-full px-4 pb-32 lg:px-6">
+          <H2 className="mb-2">Frequently asked questions</H2>
+          <Separator />
+          <div className="grid pt-8 text-left md:grid-cols-2 md:gap-16">
+            <div>
+              {FAQ_ITEMS.slice(0, 5).map((item, i) => (
+                <div className="mb-10" key={i}>
+                  <FaqItem q={item.q} a={item.a} />
+                </div>
+              ))}
+            </div>
+            <div>
+              {FAQ_ITEMS.slice(5).map((item, i) => (
+                <div className="mb-10" key={i}>
+                  <FaqItem q={item.q} a={item.a} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

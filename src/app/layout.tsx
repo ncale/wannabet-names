@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="relative mx-auto flex min-h-screen max-w-screen-lg flex-col space-y-16 px-4 md:space-y-24">
             <Header />
 
-            {children}
+            <main className="w-full">{children}</main>
 
             <Footer />
             <Toaster richColors position="top-center" />

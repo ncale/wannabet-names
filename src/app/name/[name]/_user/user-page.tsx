@@ -3,8 +3,10 @@ import UpdateForm from "./update-form";
 
 export default function UserPage({ user }: { user: NameStoneUser }) {
   return (
-    <main className="w-full max-w-xl self-center">
-      <UpdateForm user={user} />
-    </main>
+    <>
+      <section className="mx-auto w-full max-w-xl pb-40">
+        <UpdateForm user={user} />
+      </section>
+    </>
   );
 }

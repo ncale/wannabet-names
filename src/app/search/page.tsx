@@ -2,10 +2,10 @@ import SearchBar from "./search-bar";
 
 export default function SearchPage() {
   return (
-    <main className="w-full max-w-xl self-center">
-      <section className="">
+    <>
+      <section className="mx-auto w-full max-w-xl">
         <SearchBar />
       </section>
-    </main>
+    </>
   );
 }

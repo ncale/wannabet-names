@@ -11,12 +11,14 @@ const ClaimButton = dynamic(() => import("./claim-button"), { ssr: false });
 
 export default function ClaimNamePage({ name }: { name: string }) {
   return (
-    <main className="mx-auto flex max-w-xl flex-col items-center space-y-2 pt-24">
-      <H1 className="">{name}.wannabet.eth</H1>
-      <p className="pb-10">This name is available!</p>
-      <div className="flex flex-col items-center">
-        <ClaimButton name={name} />
-      </div>
-    </main>
+    <>
+      <section className="flex flex-col items-center space-y-2">
+        <H1 className="">{name}.wannabet.eth</H1>
+        <p className="pb-10">This name is available!</p>
+        <div className="flex flex-col items-center">
+          <ClaimButton name={name} />
+        </div>
+      </section>
+    </>
   );
 }
