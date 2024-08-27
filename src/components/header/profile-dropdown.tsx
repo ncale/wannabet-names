@@ -33,13 +33,13 @@ export default function ProfileDropdown({
         >
           <Avatar className="h-8 w-8">
             <AvatarImage src={namestoneRecord?.text_records.avatar_url} />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>0x</AvatarFallback>
           </Avatar>
           <div>{namestoneRecord ? namestoneRecord.name : backupName}</div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="rounded-xl *:rounded-xl">
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem asChild disabled={!namestoneRecord}>
           <Link href={`/name/${namestoneRecord?.name}`} className="p-2 font-semibold">
             Profile
           </Link>
