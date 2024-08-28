@@ -31,7 +31,9 @@ export default function ProfileDropdown({
         >
           <Avatar className="h-8 w-8">
             <AvatarImage src={namestoneRecord?.text_records.avatar} />
-            <AvatarFallback>0x</AvatarFallback>
+            <AvatarFallback>
+              {namestoneRecord?.name.slice(0, 2) || backupName.slice(0, 2)}
+            </AvatarFallback>
           </Avatar>
           <div>{namestoneRecord ? namestoneRecord.name : backupName}</div>
         </Button>

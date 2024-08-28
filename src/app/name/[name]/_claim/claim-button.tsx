@@ -2,7 +2,7 @@
 
 // Hooks
 import { useAccount } from "wagmi";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 // Components
@@ -29,6 +29,7 @@ export default function ClaimButton({
 }) {
   const { address } = useAccount();
 
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { mutate, isPending, error } = useMutation({
     mutationFn: async () => {
@@ -56,6 +57,7 @@ export default function ClaimButton({
     },
     onSuccess: () => {
       console.log("success");
+      queryClient.invalidateQueries({ queryKey: ["current-subname", address] });
       router.refresh();
       toast.success("Name claimed successfully!");
     },
