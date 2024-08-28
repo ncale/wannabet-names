@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     // Check if user already has a name - return if true
     const existingName = await nameStoneService.getName(parsed.address);
     if (existingName) {
-      return NextResponse.json({ error: "Address has already claimed name" }, { status: 403 });
+      return NextResponse.json({ error: "You have already claimed a name" }, { status: 403 });
     }
 
     // Check for conflict - return if true
