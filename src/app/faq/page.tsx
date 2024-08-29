@@ -43,7 +43,7 @@ const FAQ_ITEMS = [
 export default function FaqPage() {
   return (
     <>
-      <section>
+      <section className="mt-4">
         <div className="w-full px-4 pb-32 lg:px-6">
           <H2 className="mb-2">Frequently asked questions</H2>
           <Separator />

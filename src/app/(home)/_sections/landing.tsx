@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function LandingSection() {
   return (
-    <section className="px-4 py-8 text-center lg:px-12 lg:py-16">
+    <section className="mt-16 px-4 py-8 text-center lg:px-12 lg:py-16">
       <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-foreground md:text-5xl lg:text-6xl">
         Claim free subdomains of <span className="text-primary">wannabet.eth</span>
       </h1>

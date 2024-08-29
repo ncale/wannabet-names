@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-background">
         <Providers>
-          <div className="relative mx-auto flex min-h-screen max-w-screen-lg flex-col space-y-16 px-4 md:space-y-24">
+          <div className="relative mx-auto flex min-h-screen max-w-screen-lg flex-col space-y-0 px-4 md:space-y-0">
             <Header />
 
             <main className="w-full">{children}</main>
