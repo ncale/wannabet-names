@@ -1,5 +1,5 @@
+import * as React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Address } from "viem";
 import type { NameStoneUser } from "./namestone";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
@@ -33,4 +33,22 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
   }, [value, delay]);
 
   return debouncedValue;
+}
+
+export function useMediaQuery(query: string) {
+  const [value, setValue] = React.useState(false);
+
+  React.useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setValue(event.matches);
+    }
+
+    const result = matchMedia(query);
+    result.addEventListener("change", onChange);
+    setValue(result.matches);
+
+    return () => result.removeEventListener("change", onChange);
+  }, [query]);
+
+  return value;
 }
