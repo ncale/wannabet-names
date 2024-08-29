@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useAccount } from "wagmi";
 import { useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Components
 import {
@@ -35,6 +36,7 @@ import UserAvatar from "./user-avatar";
 import { CopyToClipboard } from "@/components/ui/copy-to-clipboard";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
+  const queryClient = useQueryClient();
   const { address } = useAccount();
 
   const isUser = useMemo(
@@ -82,6 +84,7 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
         throw new Error(resJson.error);
       }
 
+      queryClient.invalidateQueries({ queryKey: ["current-subname", address] });
       router.refresh();
       toast.success("Records updated successfully!");
     } catch (error) {
