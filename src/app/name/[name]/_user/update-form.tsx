@@ -32,6 +32,7 @@ import type { ApiUpdateBodyType } from "@/lib/types/api-update-body";
 import type { NameStoneUser } from "@/lib/namestone";
 import { toast } from "sonner";
 import UserAvatar from "./user-avatar";
+import { CopyToClipboard } from "@/components/ui/copy-to-clipboard";
 
 export default function UpdateForm({ user }: { user: NameStoneUser }) {
   const { address } = useAccount();
@@ -92,17 +93,25 @@ export default function UpdateForm({ user }: { user: NameStoneUser }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, console.log)}
-        className="mx-auto flex w-full max-w-md flex-col items-center space-y-2"
+        className="mx-auto flex w-full max-w-md flex-col items-center"
       >
         <UserAvatar user={user} urlOverride={form.getValues("avatar")} />
-        <UploadImageButton
-          setUrl={(url: string) => {
-            form.setValue("avatar", url, { shouldDirty: true });
-          }}
-          disabled={!isUser}
-        />
-        <H1 className="pt-2">{user.name}.wannabet.eth</H1>
-        <p>Owner: {abbreviateHex(user.address, 4)}</p>
+
+        <div className="mt-4">
+          <UploadImageButton
+            setUrl={(url: string) => {
+              form.setValue("avatar", url, { shouldDirty: true });
+            }}
+            disabled={!isUser}
+          />
+        </div>
+
+        <div className="mt-3 flex flex-col items-center space-y-1">
+          <H1>{user.name}.wannabet.eth</H1>
+
+          <CopyToClipboard>{abbreviateHex(user.address, 10)}</CopyToClipboard>
+        </div>
+
         <div className="w-full space-y-4 pt-4">
           <FormField
             control={form.control}
